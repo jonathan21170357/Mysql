@@ -2,7 +2,7 @@ import mysql.connector
 
 config = {
     "host": "127.0.0.1",
-    "port": "3306",
+    "port": 3306,        # <- Sin comillas (entero)
     "database": "hello_mysql",
     "user": "root",
     "password": "Admin123" 
