@@ -1,22 +1,28 @@
 import mysql.connector
 
-config = {
-    "host": "127.0.0.1",
-    "port": 3306,        # <- Sin comillas (entero)
-    "database": "hello_mysql",
-    "user": "root",
-    "password": "Admin123" 
-}
+def print_user(user):
 
-connection = mysql.connector.connect(**config)
-cursor = connection.cursor()
+    config = {
+        "host": "127.0.0.1",
+        "port": 3306,        # <- Sin comillas (entero)
+        "database": "hello_mysql",
+        "user": "root",
+        "password": "Admin123" 
+    }
 
-query = "SELECT * FROM users"
-cursor.execute(query)
-result = cursor.fetchall()
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
 
-for row in result:
-    print(row)
+    query = "SELECT * FROM users where name=%s;"
+    print(query)
+    cursor.execute(query, (user,))
+    result = cursor.fetchall()
 
-cursor.close()
-connection.close()
+    for row in result:
+        print(row)
+
+    cursor.close()
+    connection.close()
+
+print_user("Brais")
+#print_user("'; UPDATE users SET age = 15, WHERE user_id=1; -- ")
